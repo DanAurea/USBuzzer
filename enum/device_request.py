@@ -41,12 +41,17 @@ class StandardRequestCode(IntEnum):
     SYNC_FRAME        = 0X0C
 
 class DescriptorType(IntEnum):
+    BASE          = 0X00
     DEVICE        = 0X01
     CONFIGURATION = 0X02
     STRING        = 0X03
     INTERFACE     = 0X04
     ENDPOINT      = 0X05
+    QUALIFIER     = 0X06
+    OTHER_SPEED   = 0X07
+    INTERFACE_POWER = 0X08
 
 class StandardFeatureSelector(IntEnum):
     ENDPOINT_HALT        = 0X00
     DEVICE_REMOTE_WAKEUP = 0X01
+    TEST_MODE            = 0X02
