@@ -1,22 +1,22 @@
-from enum import IntEnum, IntFlag
+from enum import IntEnum
 
-class DataTransferDirection(IntFlag):
+class DataTransferDirection(IntEnum):
     """
     Data transfer direction is assigned as bit 7 in bmRequestType
     """
-    HOST_DEVICE = 0X00 << 7
-    DEVICE_HOST = 0X01 << 7
+    HOST_DEVICE = 0X00
+    DEVICE_HOST = 0X01
 
-class Type(IntFlag):
+class Type(IntEnum):
     """
     Type is assigned as bit 5-6 in bmRequestType
     """
-    STANDARD = 0X00 << 5
-    CLASS    = 0X01 << 5
-    VENDOR   = 0X02 << 5
-    RESERVED = 0X03 << 5
+    STANDARD = 0X00
+    CLASS    = 0X01
+    VENDOR   = 0X02
+    RESERVED = 0X03
 
-class Recipient(IntFlag):
+class Recipient(IntEnum):
     """
     Recipient is assigned as bit 0-4 in bmRequestType
     """
@@ -24,6 +24,8 @@ class Recipient(IntFlag):
     INTERFACE = 0X01
     ENDPOINT  = 0X02
     OTHER     = 0X03
+    RESERVED  = 0X04
+    # TODO add values upto 1F as reserved
 
 class StandardRequestCode(IntEnum):
     GET_STATUS        = 0X00
@@ -38,7 +40,8 @@ class StandardRequestCode(IntEnum):
     SET_CONFIGURATION = 0X09
     GET_INTERFACE     = 0X0A
     SET_INTERFACE     = 0X0B
-    SYNC_FRAME        = 0X0C
+    SYNCH_FRAME       = 0X0C
+    DEFAULT           = 0XFF
 
 class DescriptorType(IntEnum):
     BASE          = 0X00
