@@ -115,7 +115,9 @@ class EndpointDescriptor(Descriptor):
     This class describes an endpoint descriptor.
     """
     _fields_ = [
-                    ("endpoint_address", c_uint8),
+                    ("endpoint_number", c_uint8, 4),
+                    ("reserved", c_uint8, 3),
+                    ("direction", c_uint8, 1),
                     ("attribute", c_uint8),
                     ("max_packet_size", c_uint16),
                     ("interval", c_uint8),
@@ -151,7 +153,7 @@ class InterfaceDescriptor(Descriptor):
         :param      endpoint:  The endpoint
         :type       endpoint:  EndpointDescriptor
         """
-        self.endpoint_list[endpoint_address] = endpoint
+        self.endpoint_list[endpoint.endpoint_number] = endpoint
         self.num_endpoint = len(self.endpoint_list)
 
 class OtherSpeedDescriptor(Descriptor):
