@@ -50,6 +50,17 @@ class ConfigurationDescriptor(Descriptor):
                 ]
 
     DESCRIPTOR_TYPE = DescriptorType.CONFIGURATION
+    interface_list  = {}
+
+    def add_interface(self, interface):
+        """
+        Adds an interface descriptor to the configuration.
+        
+        :param      interface:  The interface
+        :type       interface:  InterfaceDescriptor
+        """
+        self.interface_list[interface.interface_number] = interface
+        self.num_interface = len(self.interface_list)
 
 class DeviceDescriptor(Descriptor):
     """
@@ -63,14 +74,25 @@ class DeviceDescriptor(Descriptor):
                     ("max_packet_size_0", c_uint8),
                     ("vendor_id", c_uint16),
                     ("product_id", c_uint16),
-                    ("device", c_uint16),
-                    ("manufacturer", c_uint8),
-                    ("product", c_uint8),
-                    ("serial_number", c_uint8),
+                    ("device_release", c_uint16),
+                    ("index_manufacturer", c_uint8),
+                    ("index_product", c_uint8),
+                    ("index_serial_number", c_uint8),
                     ("num_configuration", c_uint8),
                 ]
 
     DESCRIPTOR_TYPE = DescriptorType.DEVICE
+    configuration_list = {}
+
+    def add_configuration(self, configuration):
+        """
+        Adds a configuration to the device.
+        
+        :param      configuration:  The configuration
+        :type       configuration:  ConfigurationDescriptor
+        """
+        self.configuration_list[configuration.configuration_value] = configuration
+        self.num_configuration = len(self.configuration_list)
 
 class DeviceQualifierDescriptor(Descriptor):
     _fields_ = [
@@ -120,6 +142,17 @@ class InterfaceDescriptor(Descriptor):
                 ]
     
     DESCRIPTOR_TYPE = DescriptorType.INTERFACE
+    endpoint_list = {}
+
+    def add_endpoint(self, endpoint):
+        """
+        Adds an endpoint descriptor to the interface.
+        
+        :param      endpoint:  The endpoint
+        :type       endpoint:  EndpointDescriptor
+        """
+        self.endpoint_list[endpoint_address] = endpoint
+        self.num_endpoint = len(self.endpoint_list)
 
 class OtherSpeedDescriptor(Descriptor):
     _fields_ = [
