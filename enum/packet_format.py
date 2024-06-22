@@ -1,32 +1,26 @@
 from enum import IntEnum
 
-class PIDType(IntEnum):
-    TOKEN     = 0b01
-    DATA      = 0b11
-    HANDSHAKE = 0b10
-    SPECIAL   = 0b00
-
 class Token(IntEnum):
-    OUT   = 0b00
-    IN    = 0b10
-    SOF   = 0b01
-    SETUP = 0b11
+    OUT   = 0b0001
+    IN    = 0b1001
+    SOF   = 0b0101
+    SETUP = 0b1101
 
 class Data(IntEnum):
-    DATA0 = 0b00
-    DATA1 = 0b10
-    DATA2 = 0b01
-    MDATA = 0b11
+    DATA0 = 0b0011
+    DATA1 = 0b1011
+    DATA2 = 0b0111
+    MDATA = 0b1111
 
 class HandShake(IntEnum):
-    ACK   = 0b00
-    NAK   = 0b10
-    STALL = 0b11
-    NYET  = 0b01
+    ACK   = 0b0010
+    NAK   = 0b1010
+    STALL = 0b1110
+    NYET  = 0b0110
 
 class Special(IntEnum):
-    PRE      = 0b11
-    ERR      = 0b11
-    SPLIT    = 0b10
-    PING     = 0b01
-    RESERVED = 0b00
+    PRE      = 0b1100
+    ERR      = 0b1100
+    SPLIT    = 0b1000
+    PING     = 0b0100
+    RESERVED = 0b0000
